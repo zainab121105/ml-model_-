@@ -65,13 +65,28 @@ def app():
     # input_data_nparray = np.asarray(input_data)
     # reshaped_input_data = input_data_nparray.reshape(1, -1)
     # prediction = model.predict(reshaped_input_data)
-    input_data = [preg, glucose, bp, skinthickness, insulin, bmi, dpf, age]
-    input_data_nparray = np.asarray(input_data).reshape(1, -1)
+#     input_data = [preg, glucose, bp, skinthickness, insulin, bmi, dpf, age]
+#     input_data_nparray = np.asarray(input_data).reshape(1, -1)
 
-# ✅ Apply the same scaler used during training
-    scaled_input = scaler.transform(input_data_nparray)
+# # ✅ Apply the same scaler used during training
+#     scaled_input = scaler.transform(input_data_nparray)
 
-# Use scaled input for prediction
+# # Use scaled input for prediction
+#     prediction = model.predict(scaled_input)
+    input_data = {
+    'Pregnancies': [preg],
+    'Glucose': [glucose],
+    'BloodPressure': [bp],
+    'SkinThickness': [skinthickness],
+    'Insulin': [insulin],
+    'BMI': [bmi],
+    'DiabetesPedigreeFunction': [dpf],
+    'Age': [age]
+      }
+
+    input_df = pd.DataFrame(input_data)
+
+    scaled_input = scaler.transform(input_df)
     prediction = model.predict(scaled_input)
 
 
